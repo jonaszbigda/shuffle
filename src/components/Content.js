@@ -1,6 +1,7 @@
 import React from "react";
 import Cover from "./Cover";
 import Info from "./Info";
+import Description from "./Description";
 
 class Content extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class Content extends React.Component {
       <div className="content">
         <Cover coverUrl={this.props.dataObject.img_url} />
         <Info dataObject={this.props.dataObject} />
+        <Description dataObject={this.props.dataObject} />
       </div>
     );
   }

@@ -9,36 +9,61 @@ class Player extends React.Component {
       playStyle: { display: "block" },
       pauseStyle: { display: "none" }
     };
+    this.intervalId = "";
   }
 
-  componentDidMount() {
-    this.song = new Howl({
-      src: [this.props.dataObject.audio_url],
-      format: ["mp3"]
-    });
-    this.id = this.song.play();
-    this.song.pause(this.id);
-    console.log("Component Did Mount");
+  componentDidUpdate() {
+    if (typeof this.id === "undefined") {
+      this.song = new Howl({
+        src: [this.props.dataObject.audio_url],
+        format: ["mp3"]
+      });
+      this.id = this.song.play();
+      this.song.pause(this.id);
+    }
+  }
+
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      let progress =
+        (this.song.seek(this.id) / this.song.duration(this.id)) * 100;
+      document.getElementById("progress").style.width = progress + "%";
+      document.getElementById("seekTime").innerText = this.formatTime(
+        this.song.seek(this.id)
+      );
+    }, 100);
+  }
+
+  formatTime(time) {
+    var minutes = ~~((time % 3600) / 60);
+    var seconds = ~~time % 60;
+
+    var formated = "";
+
+    formated += minutes + ":" + (seconds < 10 ? "0" : "");
+    formated += "" + seconds;
+    return formated;
   }
 
   render() {
-    //if (this.props.dataObject.audio_url.length)
-    console.log(this.props.dataObject.length);
-
     var play = () => {
       console.log("play");
       this.song.play(this.id);
+      document.getElementById("durationTime").innerText = this.formatTime(
+        this.song.duration(this.id)
+      );
+      this.startTimer();
       this.setState({
         isPlaying: true,
         playStyle: { display: "none" },
         pauseStyle: { display: "block" }
       });
-      console.log(this.id);
     };
 
     var pause = () => {
       this.song.pause(this.id);
       console.log("pause");
+      clearInterval(this.intervalId);
       this.setState({
         isPlaying: false,
         playStyle: { display: "block" },
@@ -56,19 +81,26 @@ class Player extends React.Component {
 
     return (
       <div className="Player">
+        <div className="progressBar">
+          <div id="progress" className="progress" />
+        </div>
+        <div className="progressTime">
+          <p id="seekTime">0:00</p>
+          <p id="durationTime">0:00</p>
+        </div>
         <button type="button" className="playerControl">
-          <i className="fas fa-step-backward fa-4x" />
+          <i className="fas fa-step-backward fa-3x" />
         </button>
         <button
           onClick={playPause.bind(this)}
           type="button"
           className="playerControl"
         >
-          <i className="fas fa-play fa-4x" style={this.state.playStyle} />
-          <i className="fas fa-pause fa-4x" style={this.state.pauseStyle} />
+          <i className="fas fa-play fa-3x" style={this.state.playStyle} />
+          <i className="fas fa-pause fa-3x" style={this.state.pauseStyle} />
         </button>
         <button id="nextButton" type="button" className="playerControl">
-          <i className="fas fa-step-forward fa-4x" />
+          <i className="fas fa-step-forward fa-3x" />
         </button>
       </div>
     );

@@ -14,12 +14,19 @@
 
 .content {
   width: 50vw;
-  height: 50vh;
+  height: auto;
   background-color: rgba(1, 1, 1, 0.8);
   display: flex;
   margin: auto;
+  margin-top: 0;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(1, 1, 1, 0.3);
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 200;
 }
 
 .coverBox {
@@ -52,4 +59,51 @@
 .social i {
   margin: 3rem;
   margin-left: 0;
+}
+
+.description {
+  text-align: left;
+  width: 90%;
+  margin: 2rem;
+  margin-top: 0.5rem;
+}
+
+.progressBar {
+  width: 90%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.progress {
+  height: 100%;
+  background-color: white;
+  width: 0%;
+}
+
+.progressTime {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#seekTime {
+  text-align: start;
+}
+
+#durationTime {
+  text-align: end;
+}
+
+.modes {
+  height: auto;
+  display: flex;
+  margin: auto auto 0 auto;
+}
+
+.modes p {
+  padding: 1rem;
+  cursor: pointer;
 }
