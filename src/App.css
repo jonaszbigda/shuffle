@@ -48,3 +48,8 @@
   color: #ff3645;
   cursor: pointer;
 }
+
+.social i {
+  margin: 3rem;
+  margin-left: 0;
+}

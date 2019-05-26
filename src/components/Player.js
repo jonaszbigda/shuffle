@@ -5,42 +5,52 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isPlaying: true,
-      playStyle: { display: "none" },
-      pauseStyle: { display: "block" }
+      isPlaying: false,
+      playStyle: { display: "block" },
+      pauseStyle: { display: "none" }
     };
-    this.id = 0;
+  }
+
+  componentDidMount() {
     this.song = new Howl({
-      src: ["001.mp3"],
+      src: [this.props.dataObject.audio_url],
       format: ["mp3"]
     });
+    this.id = this.song.play();
+    this.song.pause(this.id);
+    console.log("Component Did Mount");
   }
 
   render() {
-    if (this.id == 0) {
-      this.id = this.song.play();
-      console.log(this.id);
-    }
+    //if (this.props.dataObject.audio_url.length)
+    console.log(this.props.dataObject.length);
 
-    var playPause = function() {
+    var play = () => {
+      console.log("play");
+      this.song.play(this.id);
+      this.setState({
+        isPlaying: true,
+        playStyle: { display: "none" },
+        pauseStyle: { display: "block" }
+      });
+      console.log(this.id);
+    };
+
+    var pause = () => {
+      this.song.pause(this.id);
+      console.log("pause");
+      this.setState({
+        isPlaying: false,
+        playStyle: { display: "block" },
+        pauseStyle: { display: "none" }
+      });
+    };
+
+    var playPause = () => {
       if (!this.state.isPlaying) {
-        console.log("play");
-        this.song.play(this.id);
-        this.setState({
-          isPlaying: true,
-          playStyle: { display: "none" },
-          pauseStyle: { display: "block" }
-        });
-        console.log(this.id);
+        play();
       } else {
-        this.song.pause(this.id);
-        console.log("pause");
-        this.setState({
-          isPlaying: false,
-          playStyle: { display: "block" },
-          pauseStyle: { display: "none" }
-        });
-        console.log(this.id);
+        pause();
       }
     };
 

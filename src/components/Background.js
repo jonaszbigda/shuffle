@@ -1,7 +1,7 @@
 import React from "react";
 
 function Background(props) {
-  let url = props.coverUrl;
+  let url = props.dataObject.img_url;
 
   let bgImage = {
     position: "absolute",
