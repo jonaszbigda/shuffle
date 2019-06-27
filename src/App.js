@@ -4,6 +4,7 @@ import Content from "./components/Content";
 import Player from "./components/Player";
 import Header from "./components/Header";
 import Modes from "./components/Modes";
+import Footer from "./components/Footer";
 
 import axios from "axios";
 
@@ -32,6 +33,7 @@ class App extends React.Component {
         <Modes />
         <Content dataObject={this.state.dataObject} />
         <Player dataObject={this.state.dataObject} />
+        <Footer />
       </div>
     );
   }

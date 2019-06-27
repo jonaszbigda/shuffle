@@ -5,7 +5,7 @@ function Info(props) {
   return (
     <div className="mainInfo">
       <h1>{props.dataObject.title}</h1>
-      <h3>{props.dataObject.artist}</h3>
+      <h3>Artist: {props.dataObject.artist}</h3>
       <h3>Genre: {props.dataObject.genre}</h3>
       <Social />
     </div>

@@ -4,8 +4,17 @@ class Modes extends React.Component {
   render() {
     return (
       <div className="modes">
-        <p id="shuffle">Shuffle</p>
-        <p id="top">Top 10</p>
+        <button
+          id="shuffle"
+          className="mode-btn active-mode"
+          type="button"
+          onClick=""
+        >
+          Shuffle
+        </button>
+        <button id="top10" className="mode-btn" type="button" onClick="">
+          Top 10
+        </button>
       </div>
     );
   }

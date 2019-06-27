@@ -4,12 +4,14 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1>
-          Shuffle{" "}
-          <span>
-            <i class="fas fa-random" />
-          </span>
-        </h1>
+        <a href="#">
+          <h1>
+            Shuffle{" "}
+            <span>
+              <i className="fas fa-random" />
+            </span>
+          </h1>
+        </a>
       </div>
     );
   }

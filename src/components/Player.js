@@ -89,7 +89,7 @@ class Player extends React.Component {
           <p id="durationTime">0:00</p>
         </div>
         <button type="button" className="playerControl">
-          <i className="fas fa-step-backward fa-3x" />
+          <i className="fas fa-redo-alt fa-3x" />
         </button>
         <button
           onClick={playPause.bind(this)}
