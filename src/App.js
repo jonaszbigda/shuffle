@@ -18,21 +18,27 @@ class App extends React.Component {
     };
   }
 
+  reload() {
+    window.location.reload();
+  }
+
   componentWillMount() {
-    axios.get("http://localhost/randomSong.php").then(res => {
-      const data = res.data;
-      this.setState({ dataObject: data });
-    });
+    axios
+      .get("http://localhost/onetrack/src/controllers/randomSong.php")
+      .then(res => {
+        const data = res.data;
+        this.setState({ dataObject: data });
+      });
   }
 
   render() {
     return (
       <div className="App" style={this.style}>
         <Background dataObject={this.state.dataObject} />
-        <Header />
+        <Header reload={this.reload} />
         <Modes />
-        <Content dataObject={this.state.dataObject} />
-        <Player dataObject={this.state.dataObject} />
+        <Content reload={this.reload} dataObject={this.state.dataObject} />
+        <Player reload={this.reload} dataObject={this.state.dataObject} />
         <Footer />
       </div>
     );

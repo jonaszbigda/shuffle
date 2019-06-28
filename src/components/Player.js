@@ -99,7 +99,12 @@ class Player extends React.Component {
           <i className="fas fa-play fa-3x" style={this.state.playStyle} />
           <i className="fas fa-pause fa-3x" style={this.state.pauseStyle} />
         </button>
-        <button id="nextButton" type="button" className="playerControl">
+        <button
+          id="nextButton"
+          type="button"
+          className="playerControl"
+          onClick={this.props.reload}
+        >
           <i className="fas fa-step-forward fa-3x" />
         </button>
       </div>

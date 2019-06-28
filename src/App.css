@@ -27,6 +27,8 @@
 /* -------------------------------------------- HEADER ----------------------------------------------- */
 
 .header {
+  display: flex;
+  justify-content: space-between;
   background-color: #ff3645;
   height: auto;
 }
@@ -39,6 +41,23 @@
 .header a {
   color: white;
   text-decoration: none;
+  margin: 0 40px;
+}
+
+.logoSection {
+  display: flex;
+}
+
+.logoSection p {
+  font-weight: 400;
+  align-self: center;
+}
+
+#splash-text {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* -------------------------------------------- INFO ----------------------------------------------- */
@@ -129,7 +148,7 @@
   padding-bottom: 10px;
 }
 
-/* -------------------------------------------- FOOTER END ----------------------------------------------- */
+/* -------------------------------------------- MODES ----------------------------------------------- */
 
 .modes {
   height: auto;
@@ -141,17 +160,86 @@
   font-family: "Montserrat", sans-serif;
   background: none;
   border: none;
+  border-bottom: 2px solid;
   color: white;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1rem;
-  padding: 1.2rem 2rem;
+  padding: 1rem 1.6rem;
   cursor: pointer;
   margin: 0 1rem 1rem 1rem;
-  border-radius: 50px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mode-btn:hover {
+  color: #ff3645;
 }
 
 .active-mode {
-  background-color: white;
   color: #ff3645;
+  text-shadow: none;
+}
+
+.genreDropdown {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.genreDropdown i {
+  margin-left: 10px;
+}
+
+/* ---------------------------------------------- BUTTONS -----------------------------------------------*/
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu i {
+  margin: 0 20px 0 10px;
+  cursor: pointer;
+}
+
+.btn {
+  font-family: "Montserrat", sans-serif;
+  background-color: #ff3645;
+  border: solid;
+  color: white;
+  font-size: 14px;
+  padding: 12px 18px;
+  border-radius: 50px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background: none;
+}
+
+.btn:disabled:hover {
+  color: white;
+  background: none;
+  cursor: default;
+}
+
+.btn:hover {
+  color: #ff3645;
+  background-color: white;
+}
+
+/*-------------------------------------------------- VOTES ------------------------------------------------*/
+
+.votes {
+  margin: 10px 20px 0 auto;
+  padding: 10px;
+}
+
+.votes h2 {
+  font-size: 2rem;
+  margin: 8px;
+}
+
+.votes p {
+  font-size: 1rem;
+  margin: 8px;
 }
