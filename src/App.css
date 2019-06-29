@@ -182,10 +182,31 @@
 
 .genreDropdown {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+.genreDropdown button {
+  margin-bottom: 0;
 }
 
 .genreDropdown i {
   margin-left: 10px;
+}
+
+.dropdownContent {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdownContent button {
+  margin: 0 1rem 0 1rem;
+  border: none;
+}
+
+.genreDropdown:hover .dropdownContent {
+  display: flex;
 }
 
 /* ---------------------------------------------- BUTTONS -----------------------------------------------*/
@@ -195,9 +216,41 @@
   align-items: center;
 }
 
-.menu i {
-  margin: 0 20px 0 10px;
+.dropdownButton {
+  background: none;
   cursor: pointer;
+  border: none;
+  color: white;
+  padding: 1.2rem 2rem 1.2rem 1.2rem;
+}
+
+.menu-button {
+  font-family: "Montserrat", sans-serif;
+  background: none;
+  border: none;
+  border-bottom: 2px solid;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1rem;
+  padding: 1rem 1.6rem;
+  cursor: pointer;
+  margin: 0 20px 0 10px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button:hover {
+  color: #ff3645;
+}
+
+.menuDropdown {
+  background: none;
+  border: none;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  right: 0;
 }
 
 .btn {
@@ -242,4 +295,10 @@
 .votes p {
   font-size: 1rem;
   margin: 8px;
+}
+
+/*------------------------------------------- EFFECTS ----------------------------------------------------*/
+
+.show {
+  display: flex;
 }

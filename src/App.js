@@ -14,31 +14,53 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataObject: {}
+      dataObject: {},
+      genre: "Genre",
+      mode: "shuffle",
+      loggedIn: false
     };
   }
 
-  reload() {
-    window.location.reload();
-  }
+  reload = () => {
+    this.fetchSong();
+    this.forceUpdate();
+  };
 
-  componentWillMount() {
+  setGenre = inGenre => {
+    this.setState({
+      genre: inGenre
+    });
+    this.reload();
+  };
+
+  fetchSong() {
     axios
-      .get("http://localhost/onetrack/src/controllers/randomSong.php")
+      .get(
+        "http://localhost/onetrack/src/controllers/randomSong.php?genre=" +
+          this.state.genre
+      )
       .then(res => {
         const data = res.data;
         this.setState({ dataObject: data });
       });
   }
 
+  componentWillMount() {
+    this.fetchSong();
+  }
+
   render() {
     return (
       <div className="App" style={this.style}>
         <Background dataObject={this.state.dataObject} />
-        <Header reload={this.reload} />
-        <Modes />
+        <Header loggedIn={this.state.loggedIn} reload={this.reload} />
+        <Modes setGenre={this.setGenre} genre={this.state.genre} />
         <Content reload={this.reload} dataObject={this.state.dataObject} />
-        <Player reload={this.reload} dataObject={this.state.dataObject} />
+        <Player
+          setGenre={this.setGenre}
+          reload={this.reload}
+          dataObject={this.state.dataObject}
+        />
         <Footer />
       </div>
     );

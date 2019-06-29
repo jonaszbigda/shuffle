@@ -39,7 +39,7 @@ class Modes extends React.Component {
           >
             Top 10
           </button>
-          <Genre />
+          <Genre setGenre={this.props.setGenre} genre={this.props.genre} />
         </div>
       );
     } else {
@@ -65,7 +65,7 @@ class Modes extends React.Component {
           >
             Top 10
           </button>
-          <Genre />
+          <Genre setGenre={this.props.setGenre} genre={this.props.genre} />
         </div>
       );
     }

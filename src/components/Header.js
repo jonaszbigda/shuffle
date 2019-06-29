@@ -17,7 +17,7 @@ class Header extends React.Component {
             </a>
             <p>Empower indies</p>
           </div>
-          <Menu />
+          <Menu loggedIn={this.props.loggedIn} />
         </div>
         <h3 id="splash-text">
           Choose a genre and get randomly picked indie songs. No premium

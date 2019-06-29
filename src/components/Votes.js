@@ -10,6 +10,12 @@ class Votes extends React.Component {
     this.votes = 0;
   }
 
+  componentWillReceiveProps() {
+    this.setState({
+      voted: false
+    });
+  }
+
   checkIfAlreadyVoted = () => {
     if (this.state.voted === false) {
       axios
