@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       dataObject: {},
       genre: "Genre",
-      mode: "shuffle",
+      mode: "register",
       loggedIn: false
     };
   }
@@ -31,6 +31,12 @@ class App extends React.Component {
       genre: inGenre
     });
     this.reload();
+  };
+
+  setMode = inMode => {
+    this.setState({
+      mode: inMode
+    });
   };
 
   fetchSong() {
@@ -50,20 +56,59 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div className="App" style={this.style}>
-        <Background dataObject={this.state.dataObject} />
-        <Header loggedIn={this.state.loggedIn} reload={this.reload} />
-        <Modes setGenre={this.setGenre} genre={this.state.genre} />
-        <Content reload={this.reload} dataObject={this.state.dataObject} />
-        <Player
-          setGenre={this.setGenre}
-          reload={this.reload}
-          dataObject={this.state.dataObject}
-        />
-        <Footer />
-      </div>
-    );
+    switch (this.state.mode) {
+      case "shuffle":
+        return (
+          <div className="App" style={this.style}>
+            <Background
+              mode={this.state.mode}
+              dataObject={this.state.dataObject}
+            />
+            <Header
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+              reload={this.reload}
+            />
+            <Modes setGenre={this.setGenre} genre={this.state.genre} />
+            <Content
+              mode={this.state.mode}
+              reload={this.reload}
+              dataObject={this.state.dataObject}
+            />
+            <Player
+              setGenre={this.setGenre}
+              reload={this.reload}
+              dataObject={this.state.dataObject}
+            />
+            <Footer />
+          </div>
+        );
+
+      case "register":
+        return (
+          <div className="App" style={this.style}>
+            <Background
+              mode={this.state.mode}
+              dataObject={this.state.dataObject}
+            />
+            <Header
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+              reload={this.reload}
+            />
+            <Content
+              setMode={this.setMode}
+              mode={this.state.mode}
+              reload={this.reload}
+              dataObject={this.state.dataObject}
+            />
+            <Footer />
+          </div>
+        );
+
+      default:
+        console.log("error");
+    }
   }
 }
 

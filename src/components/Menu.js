@@ -16,7 +16,11 @@ function Menu(props) {
         <button className="btn logInButton" type="button">
           Log In
         </button>
-        <button className="btn signUpButton" type="button">
+        <button
+          className="btn signUpButton"
+          type="button"
+          onClick={() => props.setMode("register")}
+        >
           Register
         </button>
         <button

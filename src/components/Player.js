@@ -89,15 +89,15 @@ class Player extends React.Component {
           <p id="durationTime">0:00</p>
         </div>
         <button type="button" className="playerControl">
-          <i className="fas fa-redo-alt fa-3x" />
+          <i className="fas fa-redo-alt fa-lg" />
         </button>
         <button
           onClick={playPause.bind(this)}
           type="button"
           className="playerControl"
         >
-          <i className="fas fa-play fa-3x" style={this.state.playStyle} />
-          <i className="fas fa-pause fa-3x" style={this.state.pauseStyle} />
+          <i className="fas fa-play fa-lg" style={this.state.playStyle} />
+          <i className="fas fa-pause fa-lg" style={this.state.pauseStyle} />
         </button>
         <button
           id="nextButton"
@@ -105,7 +105,7 @@ class Player extends React.Component {
           className="playerControl"
           onClick={this.props.reload}
         >
-          <i className="fas fa-step-forward fa-3x" />
+          <i className="fas fa-step-forward fa-lg" />
         </button>
       </div>
     );

@@ -13,12 +13,13 @@
 }
 
 .content {
-  width: 50vw;
+  width: auto;
+  max-width: 75%;
   height: auto;
   background-color: rgba(1, 1, 1, 0.8);
   display: flex;
   margin: auto;
-  margin-top: 0;
+  margin-top: auto;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(1, 1, 1, 0.3);
   flex-wrap: wrap;
@@ -28,6 +29,7 @@
 
 .header {
   display: flex;
+  position: sticky;
   justify-content: space-between;
   background-color: #ff3645;
   height: auto;
@@ -98,7 +100,7 @@
 /* -------------------------------------------- PLAYER ----------------------------------------------- */
 
 .playerControl {
-  margin: 4rem;
+  margin: 2rem;
   margin-top: 0;
   background-color: transparent;
   border-style: none;
@@ -116,7 +118,7 @@
   height: 3px;
   background-color: rgba(255, 255, 255, 0.2);
   margin: auto;
-  margin-bottom: 2rem;
+  margin-bottom: 6px;
 }
 
 .progress {
@@ -130,6 +132,7 @@
   margin: auto;
   display: flex;
   justify-content: space-between;
+  line-height: 0;
 }
 
 #seekTime {
@@ -297,8 +300,65 @@
   margin: 8px;
 }
 
+/*------------------------------------------------ FORMS ------------------------------------------------*/
+
+.forms {
+  width: auto;
+}
+
+.forms h1 {
+  font-weight: 200;
+}
+
+.forms hr {
+  border-color: #ff3645;
+  margin-bottom: 20px;
+}
+
+.forms form {
+  display: flex;
+  flex-direction: column;
+  margin: 14px;
+}
+
+.forms input {
+  font-family: "Montserrat", sans-serif;
+  padding: 8px;
+  margin: 4px 10px 24px 10px;
+  background: none;
+  color: white;
+  border: none;
+  border-bottom: 2px solid;
+}
+
+.forms input:focus {
+  background-color: #ffffff1e;
+}
+
+.forms label {
+  font-size: 12px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.forms checkbox {
+  background: none;
+}
+
+#accept {
+  margin-left: 0;
+}
+
 /*------------------------------------------- EFFECTS ----------------------------------------------------*/
 
 .show {
   display: flex;
+}
+
+.invalid {
+  border-color: red;
+}
+
+.valid {
+  border-color: lime;
 }

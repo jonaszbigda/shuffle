@@ -1,7 +1,13 @@
 import React from "react";
 
 function Background(props) {
-  let url = props.dataObject.img_url;
+  var url;
+
+  if (props.mode === "shuffle") {
+    url = props.dataObject.img_url;
+  } else {
+    url = "http://localhost/img/bg.jpg";
+  }
 
   let bgImage = {
     position: "absolute",
