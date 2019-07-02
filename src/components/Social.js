@@ -1,17 +1,80 @@
 import React from "react";
 
-class Social extends React.Component {
-  render() {
+function Social(props) {
+  if (props.fb !== "" && props.sc !== "" && props.www !== "") {
     return (
       <div className="social">
-        <a href="https://www.soundcloud.com">
+        <a href={props.sc}>
           <i className="fab fa-soundcloud fa-2x" />
         </a>
-        <a href="https://www.facebook.com">
+        <a href={props.fb}>
           <i className="fab fa-facebook-f fa-2x" />
         </a>
-        <a href="#">
+        <a href={props.www}>
           <i className="fas fa-globe-europe fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.fb !== "" && props.sc !== "") {
+    return (
+      <div className="social">
+        <a href={props.sc}>
+          <i className="fab fa-soundcloud fa-2x" />
+        </a>
+        <a href={props.fb}>
+          <i className="fab fa-facebook-f fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.fb !== "" && props.www !== "") {
+    return (
+      <div className="social">
+        <a href={props.fb}>
+          <i className="fab fa-facebook-f fa-2x" />
+        </a>
+        <a href={props.www}>
+          <i className="fas fa-globe-europe fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.sc !== "" && props.www !== "") {
+    return (
+      <div className="social">
+        <a href={props.sc}>
+          <i className="fab fa-soundcloud fa-2x" />
+        </a>
+        <a href={props.www}>
+          <i className="fas fa-globe-europe fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.fb !== "") {
+    return (
+      <div className="social">
+        <a href={props.fb}>
+          <i className="fab fa-facebook-f fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.sc !== "") {
+    return (
+      <div className="social">
+        <a href={props.sc}>
+          <i className="fab fa-facebook-f fa-2x" />
+        </a>
+      </div>
+    );
+  }
+  if (props.www !== "") {
+    return (
+      <div className="social">
+        <a href={props.www}>
+          <i className="fab fa-facebook-f fa-2x" />
         </a>
       </div>
     );

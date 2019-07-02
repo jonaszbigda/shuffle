@@ -35,15 +35,15 @@
   height: auto;
 }
 
-.header h1 {
-  font-size: 1.6rem;
-  font-weight: 200;
-}
-
-.header a {
+.headerLogoButton {
+  font-family: "Montserrat", sans-serif;
+  padding: 18px 25px 18px 25px;
+  font-size: 22px;
+  font-weight: 400;
+  background: none;
+  border: none;
   color: white;
-  text-decoration: none;
-  margin: 0 40px;
+  cursor: pointer;
 }
 
 .logoSection {
@@ -75,6 +75,17 @@
 
 .mainInfo {
   text-align: left;
+}
+
+.mainInfo h1 {
+  font-weight: 200;
+  font-size: 40px;
+}
+
+.mainInfo h3 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1rem;
 }
 
 .social i {
@@ -219,6 +230,10 @@
   align-items: center;
 }
 
+.menu p {
+  font-size: 14px;
+}
+
 .dropdownButton {
   background: none;
   cursor: pointer;
@@ -310,6 +325,10 @@
   font-weight: 200;
 }
 
+.forms p {
+  font-size: 13px;
+}
+
 .forms hr {
   border-color: #ff3645;
   margin-bottom: 20px;
@@ -349,16 +368,59 @@
   margin-left: 0;
 }
 
+.registerResponse {
+  display: flex;
+  justify-content: center;
+}
+
+.registerResponse p {
+  font-size: 12px;
+}
+
 /*------------------------------------------- EFFECTS ----------------------------------------------------*/
+
+.column {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+input:invalid {
+  border: none;
+  border-bottom: 2px solid;
+  border-color: red;
+  box-shadow: none;
+}
+
+input:valid {
+  border-color: white;
+}
+
+.loader {
+  display: none;
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #ff3645; /* Blue */
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .show {
   display: flex;
-}
-
-.invalid {
-  border-color: red;
-}
-
-.valid {
-  border-color: lime;
 }

@@ -4,6 +4,8 @@ import Info from "./Info";
 import Description from "./Description";
 import Votes from "./Votes";
 import Register from "./Register";
+import Login from "./LogIn";
+import AddSong from "./AddSong";
 
 class Content extends React.Component {
   render() {
@@ -21,7 +23,21 @@ class Content extends React.Component {
       case "register":
         return (
           <div className="content">
-            <Register setMode={this.props.setMode} />
+            <Register logIn={this.props.logIn} setMode={this.props.setMode} />
+          </div>
+        );
+
+      case "login":
+        return (
+          <div className="content">
+            <Login logIn={this.props.logIn} setMode={this.props.setMode} />
+          </div>
+        );
+
+      case "add":
+        return (
+          <div className="content">
+            <AddSong />
           </div>
         );
 

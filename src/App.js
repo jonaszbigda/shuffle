@@ -16,8 +16,10 @@ class App extends React.Component {
     this.state = {
       dataObject: {},
       genre: "Genre",
-      mode: "register",
-      loggedIn: false
+      mode: "add",
+      loggedIn: true,
+      username: "null",
+      song_id: ""
     };
   }
 
@@ -25,6 +27,21 @@ class App extends React.Component {
     this.fetchSong();
     this.forceUpdate();
   };
+
+  /* UŻYJEMY TEGO DOPIERO PO DEPLOYMENCIE NA SERWER
+
+  checkIfLoggedIn() {
+    axios
+      .get("http://localhost/onetrack/src/controllers/sessionInfo.php")
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
+  */
 
   setGenre = inGenre => {
     this.setState({
@@ -36,6 +53,25 @@ class App extends React.Component {
   setMode = inMode => {
     this.setState({
       mode: inMode
+    });
+    this.reload();
+  };
+
+  logIn = (username, song_id) => {
+    this.setState({
+      loggedIn: true,
+      mode: "shuffle",
+      username: username,
+      song_id: song_id
+    });
+  };
+
+  logOut = () => {
+    this.setState({
+      loggedIn: false,
+      mode: "shuffle",
+      username: "",
+      song_id: ""
     });
   };
 
@@ -65,6 +101,9 @@ class App extends React.Component {
               dataObject={this.state.dataObject}
             />
             <Header
+              logOut={this.logOut}
+              logIn={this.logIn}
+              username={this.state.username}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
               reload={this.reload}
@@ -92,16 +131,54 @@ class App extends React.Component {
               dataObject={this.state.dataObject}
             />
             <Header
+              logIn={this.logIn}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
               reload={this.reload}
             />
             <Content
+              logIn={this.logIn}
               setMode={this.setMode}
               mode={this.state.mode}
               reload={this.reload}
               dataObject={this.state.dataObject}
             />
+            <Footer />
+          </div>
+        );
+
+      case "login":
+        return (
+          <div className="App" style={this.style}>
+            <Background mode={this.state.mode} />
+            <Header
+              logIn={this.logIn}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+              reload={this.reload}
+            />
+            <Content
+              logIn={this.logIn}
+              setMode={this.setMode}
+              mode={this.state.mode}
+              reload={this.reload}
+            />
+            <Footer />
+          </div>
+        );
+
+      case "add":
+        return (
+          <div className="App" style={this.style}>
+            <Background mode={this.state.mode} />
+            <Header
+              logOut={this.logOut}
+              username={this.state.username}
+              mode={this.state.mode}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+            />
+            <Content mode={this.state.mode} />
             <Footer />
           </div>
         );

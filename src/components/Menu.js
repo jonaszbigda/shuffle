@@ -2,18 +2,49 @@ import React from "react";
 
 function Menu(props) {
   if (props.loggedIn === true) {
+    let username = props.username;
+
     return (
       <div className="menu">
+        <p>Hello {username}</p>
         <button className="btn logInButton" type="button">
-          Add Song
+          Add song
         </button>
-        <i className="fas fa-caret-down fa-lg" />
+        <button
+          type="button"
+          className="dropdownButton"
+          onClick={clickDropdown}
+        >
+          <i className="fas fa-caret-down fa-lg" />
+        </button>
+        <div id="dropdown" className="menuDropdown">
+          <button type="button" className="menu-button">
+            My song
+          </button>
+          <button type="button" className="menu-button">
+            About
+          </button>
+          <button type="button" className="menu-button">
+            Contact
+          </button>
+          <button
+            type="button"
+            className="menu-button"
+            onClick={() => props.logOut()}
+          >
+            Log out
+          </button>
+        </div>
       </div>
     );
   } else {
     return (
       <div className="menu">
-        <button className="btn logInButton" type="button">
+        <button
+          className="btn logInButton"
+          type="button"
+          onClick={() => props.setMode("login")}
+        >
           Log In
         </button>
         <button
@@ -33,12 +64,6 @@ function Menu(props) {
         <div id="dropdown" className="menuDropdown">
           <button type="button" className="menu-button">
             About
-          </button>
-          <button type="button" className="menu-button">
-            Contribute
-          </button>
-          <button type="button" className="menu-button">
-            Submit a song
           </button>
           <button type="button" className="menu-button">
             Contact

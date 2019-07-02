@@ -24,10 +24,16 @@ $response = array(
     'fb' => $res['fb'],
     'sc' => $res['sc'],
     'www' => $res['www'],
-    'about' => $res['about']
+    'about' => $res['about'],
+    'views' => $res['views']
 );
 
 echo json_encode($response);
+
+$newViews = $res['views'] + 1;
+
+$stmt2 = $conn->prepare("UPDATE songs SET views = ? WHERE id = ?");
+$stmt2->execute(array($newViews, $res['id']));
 
 $conn = NULL;
 
