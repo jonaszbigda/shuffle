@@ -4,39 +4,73 @@ function Menu(props) {
   if (props.loggedIn === true) {
     let username = props.username;
 
-    return (
-      <div className="menu">
-        <p>Hello {username}</p>
-        <button className="btn logInButton" type="button">
-          Add song
-        </button>
-        <button
-          type="button"
-          className="dropdownButton"
-          onClick={clickDropdown}
-        >
-          <i className="fas fa-caret-down fa-lg" />
-        </button>
-        <div id="dropdown" className="menuDropdown">
-          <button type="button" className="menu-button">
-            My song
-          </button>
-          <button type="button" className="menu-button">
-            About
-          </button>
-          <button type="button" className="menu-button">
-            Contact
+    if (props.song_id === "0") {
+      return (
+        <div className="menu">
+          <p>Hello {username}</p>
+          <button
+            className="btn logInButton"
+            type="button"
+            onClick={() => props.setMode("add")}
+          >
+            Add song
           </button>
           <button
             type="button"
-            className="menu-button"
-            onClick={() => props.logOut()}
+            className="dropdownButton"
+            onClick={clickDropdown}
           >
-            Log out
+            <i className="fas fa-caret-down fa-lg" />
           </button>
+          <div id="dropdown" className="menuDropdown">
+            <button type="button" className="menu-button">
+              About
+            </button>
+            <button type="button" className="menu-button">
+              Contact
+            </button>
+            <button
+              type="button"
+              className="menu-button"
+              onClick={() => props.logOut()}
+            >
+              Log out
+            </button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="menu">
+          <p>Hello {username}</p>
+          <button
+            type="button"
+            className="dropdownButton"
+            onClick={clickDropdown}
+          >
+            <i className="fas fa-caret-down fa-lg" />
+          </button>
+          <div id="dropdown" className="menuDropdown">
+            <button type="button" className="menu-button">
+              My song
+            </button>
+            <button type="button" className="menu-button">
+              About
+            </button>
+            <button type="button" className="menu-button">
+              Contact
+            </button>
+            <button
+              type="button"
+              className="menu-button"
+              onClick={() => props.logOut()}
+            >
+              Log out
+            </button>
+          </div>
+        </div>
+      );
+    }
   } else {
     return (
       <div className="menu">

@@ -20,6 +20,7 @@ class Header extends React.Component {
             <p>Empower indies</p>
           </div>
           <Menu
+            song_id={this.props.song_id}
             logOut={this.props.logOut}
             username={this.props.username}
             setMode={this.props.setMode}

@@ -1,15 +1,20 @@
-.dropdown {
+.genre-dropdown {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   display: flex;
 }
 
-.dropdown-content {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  z-index: 1;
+.genre-dropdown select {
+  font-family: "Montserrat", sans-serif;
+  margin: 8px;
+  padding: 6px;
+  border: none;
+  border-bottom: 2px solid;
+  border-color: rgba(255, 255, 255, 0.6);
+  color: white;
+  background: none;
+  appearance: none;
 }
 
-.dropdown:hover .dropdown-content {
-  display: flex;
+.genre-dropdown select:hover {
+  border-color: rgba(255, 255, 255, 0.897);
 }

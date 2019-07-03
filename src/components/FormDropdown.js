@@ -1,18 +1,18 @@
 import React from "react";
 import "../FormDropdown.css";
-import InputField from "./InputField";
+import "../InputField.css";
 
 function FormDropdown(props) {
   return (
-    <div className="dropdown">
-      <InputField type="text" label="Genre *" id="genre" />
-      <div className="dropdown-content">
-        <button type="button">Rock</button>
-        <button type="button">Rock</button>
-        <button type="button">Rock</button>
-        <button type="button">Rock</button>
-        <button type="button">Rock</button>
-      </div>
+    <div className="genre-dropdown InputField">
+      <label>Genre *</label>
+      <select>
+        <option>Rock</option>
+        <option>Metal</option>
+        <option>Electronic</option>
+        <option>Rap</option>
+        <option>Other</option>
+      </select>
     </div>
   );
 }

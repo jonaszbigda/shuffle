@@ -348,10 +348,16 @@
   color: white;
   border: none;
   border-bottom: 2px solid;
+  border-color: rgba(255, 255, 255, 0.603);
 }
 
 .forms input:focus {
   background-color: #ffffff1e;
+  border-color: #f3f3f3;
+}
+
+.forms input:hover {
+  border-color: #f3f3f3;
 }
 
 .forms label {
@@ -399,7 +405,7 @@ input:invalid {
 }
 
 input:valid {
-  border-color: white;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .loader {

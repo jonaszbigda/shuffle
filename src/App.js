@@ -19,7 +19,7 @@ class App extends React.Component {
       mode: "add",
       loggedIn: true,
       username: "null",
-      song_id: ""
+      song_id: "0"
     };
   }
 
@@ -101,6 +101,7 @@ class App extends React.Component {
               dataObject={this.state.dataObject}
             />
             <Header
+              song_id={this.state.song_id}
               logOut={this.logOut}
               logIn={this.logIn}
               username={this.state.username}
@@ -172,13 +173,14 @@ class App extends React.Component {
           <div className="App" style={this.style}>
             <Background mode={this.state.mode} />
             <Header
+              song_id={this.state.song_id}
               logOut={this.logOut}
               username={this.state.username}
               mode={this.state.mode}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
             />
-            <Content mode={this.state.mode} />
+            <Content setMode={this.setMode} mode={this.state.mode} />
             <Footer />
           </div>
         );

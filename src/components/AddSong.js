@@ -75,7 +75,11 @@ class AddSong extends React.Component {
         <button type="button" className="mode-btn">
           Submit
         </button>
-        <button type="button" className="mode-btn">
+        <button
+          type="button"
+          className="mode-btn"
+          onClick={() => this.props.setMode("shuffle")}
+        >
           Cancel
         </button>
       </div>
