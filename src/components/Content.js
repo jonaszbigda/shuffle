@@ -37,7 +37,10 @@ class Content extends React.Component {
       case "add":
         return (
           <div className="content">
-            <AddSong setMode={this.props.setMode} />
+            <AddSong
+              username={this.props.username}
+              setMode={this.props.setMode}
+            />
           </div>
         );
 

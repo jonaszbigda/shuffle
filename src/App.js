@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 import axios from "axios";
 
-import "./App.css";
+import "./App.scss";
 
 class App extends React.Component {
   constructor(props) {
@@ -180,7 +180,11 @@ class App extends React.Component {
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
             />
-            <Content setMode={this.setMode} mode={this.state.mode} />
+            <Content
+              username={this.state.username}
+              setMode={this.setMode}
+              mode={this.state.mode}
+            />
             <Footer />
           </div>
         );

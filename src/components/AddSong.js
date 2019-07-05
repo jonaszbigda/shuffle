@@ -18,7 +18,7 @@ class AddSong extends React.Component {
             <div className="column">
               <InputField
                 label="Title *"
-                id="title"
+                id="_title"
                 type="text"
                 validateField={validateField}
                 validate="true"
@@ -27,15 +27,15 @@ class AddSong extends React.Component {
                 validateField={validateField}
                 validate="true"
                 label="Artist *"
-                id="artist"
+                id="_artist"
                 type="text"
               />
               <FormDropdown />
             </div>
             <div className="column">
-              <InputField label="Facebook" id="fb" type="text" />
-              <InputField label="Soundcloud" id="sc" type="text" />
-              <InputField label="Other link" id="www" type="text" />
+              <InputField label="Facebook" id="_fb" type="text" />
+              <InputField label="Soundcloud" id="_sc" type="text" />
+              <InputField label="Other link" id="_www" type="text" />
             </div>
             <div className="column">
               <InputField
@@ -45,7 +45,7 @@ class AddSong extends React.Component {
                     <span> Upload Photo</span>
                   </i>
                 }
-                id="image"
+                id="_image"
                 type="file"
               />
               <InputField
@@ -55,7 +55,7 @@ class AddSong extends React.Component {
                     <span> Upload track</span>
                   </i>
                 }
-                id="file"
+                id="_mp3"
                 type="file"
               />
             </div>
@@ -63,7 +63,7 @@ class AddSong extends React.Component {
           <div className="row">
             <InputField
               label="Description *"
-              id="description"
+              id="_description"
               type="textarea"
             />
           </div>
@@ -72,7 +72,12 @@ class AddSong extends React.Component {
           <div id="loader" className="loader" />
           <p id="responseText" />
         </div>
-        <button type="button" className="mode-btn">
+        <button
+          type="button"
+          id="_submit"
+          className="mode-btn"
+          onClick={() => sendForm(this.props.username)}
+        >
           Submit
         </button>
         <button
@@ -87,13 +92,64 @@ class AddSong extends React.Component {
   }
 }
 
+function sendForm(username) {
+  var _title = document.getElementById("_title"),
+    _artist = document.getElementById("_artist"),
+    _fb = document.getElementById("_fb"),
+    _sc = document.getElementById("_sc"),
+    _www = document.getElementById("_www"),
+    _image = document.getElementById("_image"),
+    _mp3 = document.getElementById("_mp3"),
+    _description = document.getElementById("_description"),
+    _username = username;
+
+  if (validateForm() && _image.files.length !== 0 && _mp3.files.length !== 0) {
+    /* axios
+      .post("http://localhost/onetrack/src/controllers/upload.php", {
+        title: _title,
+        artist: _artist,
+        fb: _fb,
+        sc: _sc,
+        www: _www,
+        image: _image,
+        mp3: _mp3,
+        description: _description,
+        username: _username
+      })
+      .then(function(response) {
+        console.log("Form valid and sent.");
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      }); */
+    console.log("VALIDATED AND SENT");
+  } else {
+    console.log("Form Invalid");
+  }
+}
+
+function validateForm() {
+  if (
+    validateField("_title") &&
+    validateField("_artist") &&
+    validateField("_description")
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function validateField(id) {
   var field = document.getElementById(id);
 
   if (field.value.length > 0) {
     field.setCustomValidity("");
+    return true;
   } else {
     field.setCustomValidity("Cannot leave this field empty, sorry");
+    return false;
   }
 }
 

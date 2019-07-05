@@ -1,6 +1,6 @@
 import React from "react";
-import "../FormDropdown.css";
-import "../InputField.css";
+import "../FormDropdown.scss";
+import "../InputField.scss";
 
 function FormDropdown(props) {
   return (
