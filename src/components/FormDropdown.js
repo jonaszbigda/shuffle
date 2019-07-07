@@ -6,12 +6,12 @@ function FormDropdown(props) {
   return (
     <div className="genre-dropdown InputField">
       <label>Genre *</label>
-      <select>
-        <option>Rock</option>
-        <option>Metal</option>
-        <option>Electronic</option>
-        <option>Rap</option>
-        <option>Other</option>
+      <select id="selectGenre">
+        <option value="Rock">Rock</option>
+        <option value="Metal">Metal</option>
+        <option value="Electronic">Electronic</option>
+        <option value="Rap">Rap</option>
+        <option value="Other">Other</option>
       </select>
     </div>
   );

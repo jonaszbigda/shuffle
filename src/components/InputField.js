@@ -9,6 +9,13 @@ function InputField(props) {
         <textarea rows="8" cols="80" id={props.id} />
       </div>
     );
+  } else if (props.type === "file") {
+    return (
+      <div className={"InputField " + props.additionalClass}>
+        <label htmlFor={props.id}>{props.label}</label>
+        <input type={props.type} id={props.id} onChange={props.change} />
+      </div>
+    );
   } else {
     if (props.validate === "true") {
       return (

@@ -39,6 +39,7 @@ class Content extends React.Component {
           <div className="content">
             <AddSong
               username={this.props.username}
+              onUpload={this.props.onUpload}
               setMode={this.props.setMode}
             />
           </div>

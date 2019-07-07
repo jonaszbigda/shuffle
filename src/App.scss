@@ -33,7 +33,7 @@ $maincolor: #ff3645;
   display: flex;
   position: sticky;
   justify-content: space-between;
-  background-color: #ff3645;
+  background-color: $maincolor;
   height: auto;
 }
 
@@ -50,11 +50,11 @@ $maincolor: #ff3645;
 
 .logoSection {
   display: flex;
-}
 
-.logoSection p {
-  font-weight: 400;
-  align-self: center;
+  p {
+    font-weight: 400;
+    align-self: center;
+  }
 }
 
 #splash-text {
@@ -77,30 +77,32 @@ $maincolor: #ff3645;
 
 .mainInfo {
   text-align: left;
+
+  h1 {
+    font-weight: 200;
+    font-size: 40px;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1rem;
+  }
 }
 
-.mainInfo h1 {
-  font-weight: 200;
-  font-size: 40px;
-}
+.social {
+  i {
+    margin: 2rem;
+    margin-left: 0;
+  }
 
-.mainInfo h3 {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1rem;
-}
+  a {
+    color: white;
+  }
 
-.social i {
-  margin: 2rem;
-  margin-left: 0;
-}
-
-.social a {
-  color: white;
-}
-
-.social a :hover {
-  color: #ff3645;
+  a:hover {
+    color: $maincolor;
+  }
 }
 
 .description {
@@ -119,11 +121,11 @@ $maincolor: #ff3645;
   border-style: none;
   color: white;
   text-shadow: 5px 5px 5px rgba(1, 1, 1, 0.8);
-}
 
-.playerControl :hover {
-  color: #ff3645;
-  cursor: pointer;
+  :hover {
+    color: $maincolor;
+    cursor: pointer;
+  }
 }
 
 .progressBar {
@@ -185,28 +187,28 @@ $maincolor: #ff3645;
   cursor: pointer;
   margin: 0 1rem 1rem 1rem;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-}
 
-.mode-btn:hover {
-  color: #ff3645;
+  :hover {
+    color: $maincolor;
+  }
 }
 
 .active-mode {
-  color: #ff3645;
+  color: $maincolor;
   text-shadow: none;
 }
 
 .genreDropdown {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   display: inline-block;
-}
 
-.genreDropdown button {
-  margin-bottom: 0;
-}
+  button {
+    margin-bottom: 0;
+  }
 
-.genreDropdown i {
-  margin-left: 10px;
+  i {
+    margin-left: 10px;
+  }
 }
 
 .dropdownContent {
@@ -214,11 +216,11 @@ $maincolor: #ff3645;
   flex-direction: column;
   position: absolute;
   z-index: 1;
-}
 
-.dropdownContent button {
-  margin: 0 1rem 0 1rem;
-  border: none;
+  button {
+    margin: 0 1rem 0 1rem;
+    border: none;
+  }
 }
 
 .genreDropdown:hover .dropdownContent {
@@ -230,10 +232,10 @@ $maincolor: #ff3645;
 .menu {
   display: flex;
   align-items: center;
-}
 
-.menu p {
-  font-size: 14px;
+  p {
+    font-size: 14px;
+  }
 }
 
 .dropdownButton {
@@ -257,10 +259,10 @@ $maincolor: #ff3645;
   cursor: pointer;
   margin: 0 20px 0 10px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-}
 
-.menu-button:hover {
-  color: #ff3645;
+  :hover {
+    color: $maincolor;
+  }
 }
 
 .menuDropdown {
@@ -275,7 +277,7 @@ $maincolor: #ff3645;
 
 .btn {
   font-family: "Montserrat", sans-serif;
-  background-color: #ff3645;
+  background-color: $maincolor;
   border: solid;
   color: white;
   font-size: 14px;
@@ -283,21 +285,21 @@ $maincolor: #ff3645;
   border-radius: 50px;
   margin: 0 10px;
   cursor: pointer;
-}
 
-.btn:disabled {
-  background: none;
-}
+  :disabled {
+    background: none;
+  }
 
-.btn:disabled:hover {
-  color: white;
-  background: none;
-  cursor: default;
-}
+  :disabled:hover {
+    color: white;
+    background: none;
+    cursor: default;
+  }
 
-.btn:hover {
-  color: #ff3645;
-  background-color: white;
+  :hover {
+    color: $maincolor;
+    background-color: white;
+  }
 }
 
 /*-------------------------------------------------- VOTES ------------------------------------------------*/
@@ -305,71 +307,71 @@ $maincolor: #ff3645;
 .votes {
   margin: 10px 20px 0 auto;
   padding: 10px;
-}
 
-.votes h2 {
-  font-size: 2rem;
-  margin: 8px;
-}
+  h2 {
+    font-size: 2rem;
+    margin: 8px;
+  }
 
-.votes p {
-  font-size: 1rem;
-  margin: 8px;
+  p {
+    font-size: 1rem;
+    margin: 8px;
+  }
 }
 
 /*------------------------------------------------ FORMS ------------------------------------------------*/
 
 .forms {
   width: auto;
-}
 
-.forms h1 {
-  font-weight: 200;
-}
+  h1 {
+    font-weight: 200;
+  }
 
-.forms p {
-  font-size: 13px;
-}
+  p {
+    font-size: 13px;
+  }
 
-.forms hr {
-  border-color: #ff3645;
-  margin-bottom: 20px;
-}
+  hr {
+    border-color: $maincolor;
+    margin-bottom: 20px;
+  }
 
-.forms form {
-  display: flex;
-  flex-direction: column;
-  margin: 14px;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 14px;
+  }
 
-.forms input {
-  font-family: "Montserrat", sans-serif;
-  padding: 8px;
-  margin: 4px 10px 24px 10px;
-  background: none;
-  color: white;
-  border: none;
-  border-bottom: 2px solid;
-  border-color: rgba(255, 255, 255, 0.603);
-}
+  input {
+    font-family: "Montserrat", sans-serif;
+    padding: 8px;
+    margin: 4px 10px 24px 10px;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: rgba(255, 255, 255, 0.603);
+  }
 
-.forms input:focus {
-  background-color: #ffffff1e;
-  border-color: #f3f3f3;
-}
+  input:focus {
+    background-color: #ffffff1e;
+    border-color: #f3f3f3;
+  }
 
-.forms input:hover {
-  border-color: #f3f3f3;
-}
+  input:hover {
+    border-color: #f3f3f3;
+  }
 
-.forms label {
-  font-size: 12px;
-  text-align: left;
-  margin-left: 10px;
-}
+  label {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 10px;
+  }
 
-.forms checkbox {
-  background: none;
+  checkbox {
+    background: none;
+  }
 }
 
 #accept {
@@ -379,10 +381,10 @@ $maincolor: #ff3645;
 .registerResponse {
   display: flex;
   justify-content: center;
-}
 
-.registerResponse p {
-  font-size: 12px;
+  p {
+    font-size: 12px;
+  }
 }
 
 /*------------------------------------------- EFFECTS ----------------------------------------------------*/
@@ -413,7 +415,7 @@ input:valid {
 .loader {
   display: none;
   border: 6px solid #f3f3f3; /* Light grey */
-  border-top: 6px solid #ff3645; /* Blue */
+  border-top: 6px solid $maincolor; /* Blue */
   border-radius: 50%;
   width: 25px;
   height: 25px;

@@ -18,7 +18,7 @@ class App extends React.Component {
       genre: "Genre",
       mode: "add",
       loggedIn: true,
-      username: "null",
+      username: "jonasz787",
       song_id: "0"
     };
   }
@@ -55,6 +55,13 @@ class App extends React.Component {
       mode: inMode
     });
     this.reload();
+  };
+
+  onUpload = song_id => {
+    this.setState({
+      song_id: song_id,
+      mode: "shuffle"
+    });
   };
 
   logIn = (username, song_id) => {
@@ -184,6 +191,7 @@ class App extends React.Component {
               username={this.state.username}
               setMode={this.setMode}
               mode={this.state.mode}
+              onUpload={this.onUpload}
             />
             <Footer />
           </div>

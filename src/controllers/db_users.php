@@ -1,13 +1,13 @@
 <?php
 
-    $host = "127.0.0.1";
-    $user = "root";
-    $pass = "";
+    $host_users = "127.0.0.1";
+    $user_users = "root";
+    $pass_users = "";
     
 
     try {
-        $conn = new PDO("mysql:host=$host;dbname=db_users", $user, $pass);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn_users = new PDO("mysql:host=$host_users;dbname=db_users", $user_users, $pass_users);
+        $conn_users->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e)
     {

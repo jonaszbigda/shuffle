@@ -5,9 +5,9 @@ include "db.php";
 $genre = $_GET["genre"];
 
 if($genre == "Genre"){
-    $stmt = $conn->query('SELECT * FROM `songs` JOIN (SELECT CEIL(RAND() * (SELECT MAX(`id`) FROM `songs`)) AS `id`) AS rows USING (`id`)');
+    $stmt = $conn->query("SELECT * FROM songs ORDER BY RAND() LIMIT 1");
 } else {
-    $stmt = $conn->query("SELECT * FROM `songs` WHERE `genre` = '$genre' ORDER BY RAND() LIMIT 1");
+    $stmt = $conn->query("SELECT * FROM songs WHERE genre = '$genre' ORDER BY RAND() LIMIT 1");
 };
 
 $res = $stmt -> fetch();

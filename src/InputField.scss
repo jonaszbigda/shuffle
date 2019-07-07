@@ -6,35 +6,35 @@
 
 .file {
   display: flex;
-}
 
-.file input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
+  input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
 
-.file label {
-  display: inline-block;
-  text-align: center;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.123);
-  border-radius: 20px;
-  cursor: pointer;
-}
+  label {
+    display: inline-block;
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.123);
+    border-radius: 20px;
+    cursor: pointer;
+  }
 
-.file label:hover {
-  background-color: rgba(255, 255, 255, 0.281);
-}
+  label:hover {
+    background-color: rgba(255, 255, 255, 0.281);
+  }
 
-.file span {
-  font-family: "Montserrat", sans-serif;
-  margin-left: 6px;
-  font-weight: 400;
-  font-size: 14px;
+  span {
+    font-family: "Montserrat", sans-serif;
+    margin-left: 6px;
+    font-weight: 400;
+    font-size: 14px;
+  }
 }
 
 .InputField textarea {

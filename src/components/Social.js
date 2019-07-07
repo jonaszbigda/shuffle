@@ -78,6 +78,8 @@ function Social(props) {
         </a>
       </div>
     );
+  } else {
+    return <div className="social" />;
   }
 }
 
