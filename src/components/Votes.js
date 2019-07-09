@@ -61,24 +61,38 @@ class Votes extends React.Component {
 
   render() {
     this.checkIfAlreadyVoted();
-    if (this.state.voted === false) {
-      return (
-        <div className="votes">
-          <p>Głosów:</p>
-          <h2>{this.props.dataObject.votes}</h2>
-          <button id="vote" className="btn" type="button" onClick={this.upVote}>
-            Zagłosuj
-          </button>
-        </div>
-      );
+    if (this.props.mode === "shuffle") {
+      if (this.state.voted === false) {
+        return (
+          <div className="votes">
+            <p>Głosów:</p>
+            <h2>{this.props.dataObject.votes}</h2>
+            <button
+              id="vote"
+              className="btn"
+              type="button"
+              onClick={this.upVote}
+            >
+              Zagłosuj
+            </button>
+          </div>
+        );
+      } else {
+        return (
+          <div className="votes">
+            <p>Głosów:</p>
+            <h2>{this.votes}</h2>
+            <button id="vote" className="btn" type="button" disabled>
+              Oddano głos
+            </button>
+          </div>
+        );
+      }
     } else {
       return (
         <div className="votes">
           <p>Głosów:</p>
-          <h2>{this.votes}</h2>
-          <button id="vote" className="btn" type="button" disabled>
-            Oddano głos
-          </button>
+          <h2>{this.props.dataObject.votes}</h2>
         </div>
       );
     }

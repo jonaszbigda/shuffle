@@ -3,7 +3,7 @@ import React from "react";
 function Background(props) {
   var url;
 
-  if (props.mode === "shuffle") {
+  if (props.mode === "shuffle" || props.mode === "mySong") {
     url = props.dataObject.img_url;
   } else {
     url = "http://localhost/img/bg.jpg";

@@ -16,11 +16,34 @@ class Player extends React.Component {
     if (typeof this.id === "undefined") {
       this.song = new Howl({
         src: [this.props.dataObject.audio_url],
-        format: ["mp3"]
+        format: ["mp3"],
+        onload: function() {
+          if (
+            document.getElementById("player") &&
+            document.getElementById("loader")
+          ) {
+            document.getElementById("player").classList.remove("hide");
+            document.getElementById("loader").classList.remove("show");
+          }
+        }
       });
-      this.id = this.song.play();
-      this.song.pause(this.id);
     }
+  }
+
+  clearPlayer = () => {
+    if (typeof this.id !== "undefined") {
+      this.pause();
+    }
+    this.id = undefined;
+    document.getElementById("progress").style.width = "0%";
+    document.getElementById("seekTime").innerText = "0:00";
+    document.getElementById("durationTime").innerText = "0:00";
+  };
+
+  componentWillReceiveProps() {
+    this.clearPlayer();
+    document.getElementById("player").classList.add("hide");
+    document.getElementById("loader").classList.add("show");
   }
 
   startTimer() {
@@ -45,68 +68,69 @@ class Player extends React.Component {
     return formated;
   }
 
+  play = () => {
+    this.id = this.song.play();
+    this.startTimer();
+    document.getElementById("durationTime").innerText = this.formatTime(
+      this.song.duration(this.id)
+    );
+    this.setState({
+      isPlaying: true,
+      playStyle: { display: "none" },
+      pauseStyle: { display: "block" }
+    });
+  };
+
+  pause = () => {
+    this.song.pause(this.id);
+    clearInterval(this.intervalId);
+    this.setState({
+      isPlaying: false,
+      playStyle: { display: "block" },
+      pauseStyle: { display: "none" }
+    });
+  };
+
+  playPause = () => {
+    if (!this.state.isPlaying) {
+      this.play();
+    } else {
+      this.pause();
+    }
+  };
+
   render() {
-    var play = () => {
-      console.log("play");
-      this.song.play(this.id);
-      document.getElementById("durationTime").innerText = this.formatTime(
-        this.song.duration(this.id)
-      );
-      this.startTimer();
-      this.setState({
-        isPlaying: true,
-        playStyle: { display: "none" },
-        pauseStyle: { display: "block" }
-      });
-    };
-
-    var pause = () => {
-      this.song.pause(this.id);
-      console.log("pause");
-      clearInterval(this.intervalId);
-      this.setState({
-        isPlaying: false,
-        playStyle: { display: "block" },
-        pauseStyle: { display: "none" }
-      });
-    };
-
-    var playPause = () => {
-      if (!this.state.isPlaying) {
-        play();
-      } else {
-        pause();
-      }
-    };
-
     return (
-      <div className="Player">
-        <div className="progressBar">
-          <div id="progress" className="progress" />
+      <div className="playerContainer">
+        <div id="loader" className="loader" />
+        <div id="player">
+          <div className="progressBar">
+            <div id="progress" className="progress" />
+          </div>
+          <div className="progressTime">
+            <p id="seekTime">0:00</p>
+            <p id="durationTime">0:00</p>
+          </div>
+          <button type="button" className="playerControl">
+            <i className="fas fa-redo-alt fa-lg" />
+          </button>
+          <button
+            onClick={this.playPause.bind(this)}
+            type="button"
+            className="playerControl"
+          >
+            <i className="fas fa-play fa-lg" style={this.state.playStyle} />
+            <i className="fas fa-pause fa-lg" style={this.state.pauseStyle} />
+          </button>
+          <button
+            id="nextButton"
+            type="button"
+            className="playerControl"
+            onClick={this.props.reload}
+          >
+            <i className="fas fa-step-forward fa-lg" />
+          </button>
         </div>
-        <div className="progressTime">
-          <p id="seekTime">0:00</p>
-          <p id="durationTime">0:00</p>
-        </div>
-        <button type="button" className="playerControl">
-          <i className="fas fa-redo-alt fa-lg" />
-        </button>
-        <button
-          onClick={playPause.bind(this)}
-          type="button"
-          className="playerControl"
-        >
-          <i className="fas fa-play fa-lg" style={this.state.playStyle} />
-          <i className="fas fa-pause fa-lg" style={this.state.pauseStyle} />
-        </button>
-        <button
-          id="nextButton"
-          type="button"
-          className="playerControl"
-          onClick={this.props.reload}
-        >
-          <i className="fas fa-step-forward fa-lg" />
-        </button>
       </div>
     );
   }

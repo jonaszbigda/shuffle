@@ -17,7 +17,7 @@ class Header extends React.Component {
                 <i className="fas fa-random" />
               </span>
             </button>
-            <p>Empower indies</p>
+            <p>beta (v0.5.0)</p>
           </div>
           <Menu
             song_id={this.props.song_id}

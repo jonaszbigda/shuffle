@@ -6,6 +6,8 @@ import Votes from "./Votes";
 import Register from "./Register";
 import Login from "./LogIn";
 import AddSong from "./AddSong";
+import About from "./About";
+import Top from "./Top";
 
 class Content extends React.Component {
   render() {
@@ -15,7 +17,24 @@ class Content extends React.Component {
           <div className="content">
             <Cover coverUrl={this.props.dataObject.img_url} />
             <Info dataObject={this.props.dataObject} />
-            <Votes dataObject={this.props.dataObject} />
+            <Votes mode={this.props.mode} dataObject={this.props.dataObject} />
+            <Description dataObject={this.props.dataObject} />
+          </div>
+        );
+
+      case "top10":
+        return (
+          <div className="content">
+            <Top />
+          </div>
+        );
+
+      case "mySong":
+        return (
+          <div className="content">
+            <Cover coverUrl={this.props.dataObject.img_url} />
+            <Info dataObject={this.props.dataObject} />
+            <Votes mode={this.props.mode} dataObject={this.props.dataObject} />
             <Description dataObject={this.props.dataObject} />
           </div>
         );
@@ -42,6 +61,13 @@ class Content extends React.Component {
               onUpload={this.props.onUpload}
               setMode={this.props.setMode}
             />
+          </div>
+        );
+
+      case "about":
+        return (
+          <div className="content">
+            <About />
           </div>
         );
 

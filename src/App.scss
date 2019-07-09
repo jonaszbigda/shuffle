@@ -21,7 +21,7 @@ $maincolor: #ff3645;
   background-color: rgba(1, 1, 1, 0.8);
   display: flex;
   margin: auto;
-  margin-top: auto;
+  margin-top: 20px;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(1, 1, 1, 0.3);
   flex-wrap: wrap;
@@ -46,6 +46,10 @@ $maincolor: #ff3645;
   border: none;
   color: white;
   cursor: pointer;
+}
+
+.headerLogoButton:hover {
+  color: black;
 }
 
 .logoSection {
@@ -113,6 +117,16 @@ $maincolor: #ff3645;
 }
 
 /* -------------------------------------------- PLAYER ----------------------------------------------- */
+
+.playerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#player {
+  width: 100%;
+}
 
 .playerControl {
   margin: 2rem;
@@ -187,10 +201,10 @@ $maincolor: #ff3645;
   cursor: pointer;
   margin: 0 1rem 1rem 1rem;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
 
-  :hover {
-    color: $maincolor;
-  }
+.mode-btn:hover {
+  color: $maincolor;
 }
 
 .active-mode {
@@ -248,21 +262,21 @@ $maincolor: #ff3645;
 
 .menu-button {
   font-family: "Montserrat", sans-serif;
-  background: none;
+  background: rgba(0, 0, 0, 0.5);
   border: none;
-  border-bottom: 2px solid;
   color: white;
   font-size: 14px;
   font-weight: 400;
   line-height: 1rem;
   padding: 1rem 1.6rem;
   cursor: pointer;
-  margin: 0 20px 0 10px;
+  margin: 4px 20px 4px 10px;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
 
-  :hover {
-    color: $maincolor;
-  }
+.menu-button:hover {
+  color: $maincolor;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .menuDropdown {
@@ -285,21 +299,21 @@ $maincolor: #ff3645;
   border-radius: 50px;
   margin: 0 10px;
   cursor: pointer;
+}
 
-  :disabled {
-    background: none;
-  }
+.btn:hover {
+  color: $maincolor;
+  background-color: white;
+}
 
-  :disabled:hover {
-    color: white;
-    background: none;
-    cursor: default;
-  }
+.btn:disabled {
+  background: none;
+}
 
-  :hover {
-    color: $maincolor;
-    background-color: white;
-  }
+.btn:disabled:hover {
+  color: white;
+  background: none;
+  cursor: default;
 }
 
 /*-------------------------------------------------- VOTES ------------------------------------------------*/
@@ -433,4 +447,8 @@ input:valid {
 
 .show {
   display: flex;
+}
+
+.hide {
+  display: none;
 }

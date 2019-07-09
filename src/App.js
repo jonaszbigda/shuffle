@@ -16,17 +16,12 @@ class App extends React.Component {
     this.state = {
       dataObject: {},
       genre: "Genre",
-      mode: "add",
-      loggedIn: true,
-      username: "jonasz787",
+      mode: "shuffle",
+      loggedIn: false,
+      username: "",
       song_id: "0"
     };
   }
-
-  reload = () => {
-    this.fetchSong();
-    this.forceUpdate();
-  };
 
   /* UŻYJEMY TEGO DOPIERO PO DEPLOYMENCIE NA SERWER
 
@@ -43,6 +38,11 @@ class App extends React.Component {
 
   */
 
+  reload = () => {
+    this.fetchSong();
+    this.render();
+  };
+
   setGenre = inGenre => {
     this.setState({
       genre: inGenre
@@ -51,16 +51,24 @@ class App extends React.Component {
   };
 
   setMode = inMode => {
-    this.setState({
-      mode: inMode
-    });
-    this.reload();
+    if (inMode === "mySong") {
+      this.setState({
+        mode: inMode
+      });
+      this.fetchSong("mySong");
+      this.render();
+    } else {
+      this.setState({
+        mode: inMode
+      });
+      this.reload();
+    }
   };
 
   onUpload = song_id => {
     this.setState({
       song_id: song_id,
-      mode: "shuffle"
+      mode: "mySong"
     });
   };
 
@@ -82,16 +90,30 @@ class App extends React.Component {
     });
   };
 
-  fetchSong() {
-    axios
-      .get(
-        "http://localhost/onetrack/src/controllers/randomSong.php?genre=" +
-          this.state.genre
-      )
-      .then(res => {
-        const data = res.data;
-        this.setState({ dataObject: data });
-      });
+  fetchSong(mode) {
+    if (mode === "mySong") {
+      console.log("fetching - my song");
+      axios
+        .get(
+          "http://localhost/onetrack/src/controllers/mySong.php?id=" +
+            this.state.song_id
+        )
+        .then(res => {
+          const data = res.data;
+          this.setState({ dataObject: data });
+        });
+    } else {
+      console.log("fetching - random song");
+      axios
+        .get(
+          "http://localhost/onetrack/src/controllers/randomSong.php?genre=" +
+            this.state.genre
+        )
+        .then(res => {
+          const data = res.data;
+          this.setState({ dataObject: data });
+        });
+    }
   }
 
   componentWillMount() {
@@ -116,7 +138,12 @@ class App extends React.Component {
               loggedIn={this.state.loggedIn}
               reload={this.reload}
             />
-            <Modes setGenre={this.setGenre} genre={this.state.genre} />
+            <Modes
+              setGenre={this.setGenre}
+              genre={this.state.genre}
+              setMode={this.setMode}
+              mode={this.state.mode}
+            />
             <Content
               mode={this.state.mode}
               reload={this.reload}
@@ -124,6 +151,34 @@ class App extends React.Component {
             />
             <Player
               setGenre={this.setGenre}
+              reload={this.reload}
+              dataObject={this.state.dataObject}
+            />
+            <Footer />
+          </div>
+        );
+
+      case "top10":
+        return (
+          <div className="App" style={this.style}>
+            <Background mode={this.state.mode} />
+            <Header
+              song_id={this.state.song_id}
+              logOut={this.logOut}
+              logIn={this.logIn}
+              username={this.state.username}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+              reload={this.reload}
+            />
+            <Modes
+              setGenre={this.setGenre}
+              genre={this.state.genre}
+              setMode={this.setMode}
+              mode={this.state.mode}
+            />
+            <Content
+              mode={this.state.mode}
               reload={this.reload}
               dataObject={this.state.dataObject}
             />
@@ -193,6 +248,48 @@ class App extends React.Component {
               mode={this.state.mode}
               onUpload={this.onUpload}
             />
+            <Footer />
+          </div>
+        );
+
+      case "mySong":
+        return (
+          <div className="App" style={this.style}>
+            <Background
+              dataObject={this.state.dataObject}
+              mode={this.state.mode}
+            />
+            <Header
+              song_id={this.state.song_id}
+              logOut={this.logOut}
+              username={this.state.username}
+              mode={this.state.mode}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+            />
+            <Content
+              setMode={this.setMode}
+              mode={this.state.mode}
+              dataObject={this.state.dataObject}
+            />
+            <Player reload={this.reload} dataObject={this.state.dataObject} />
+            <Footer />
+          </div>
+        );
+
+      case "about":
+        return (
+          <div className="App" style={this.style}>
+            <Background mode={this.state.mode} />
+            <Header
+              song_id={this.state.song_id}
+              logOut={this.logOut}
+              username={this.state.username}
+              mode={this.state.mode}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+            />
+            <Content mode={this.state.mode} />
             <Footer />
           </div>
         );

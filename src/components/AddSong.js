@@ -4,15 +4,60 @@ import InputField from "./InputField";
 import FormDropdown from "./FormDropdown";
 
 class AddSong extends React.Component {
-  constructor(props) {
-    super(props);
-    this.song_id = "";
-  }
+  sendForm = () => {
+    var _title = document.getElementById("_title"),
+      _artist = document.getElementById("_artist"),
+      _fb = document.getElementById("_fb"),
+      _sc = document.getElementById("_sc"),
+      _www = document.getElementById("_www"),
+      _image = document.getElementById("_image"),
+      _mp3 = document.getElementById("_mp3"),
+      _description = document.getElementById("_description"),
+      _genre = document.getElementById("selectGenre"),
+      _username = this.props.username,
+      loader = document.getElementById("loader"),
+      responseText = document.getElementById("responseText");
 
-  upload() {
-    sendForm(this.props.username);
-    this.props.onUpload(this.song_id); ////////////////////////WROOOOOONG
-  }
+    if (
+      validateForm() &&
+      _image.files.length !== 0 &&
+      _mp3.files.length !== 0 &&
+      isJPG(_image.files[0].name) &&
+      isMP3(_mp3.files[0].name)
+    ) {
+      loader.classList.add("show");
+      responseText.innerHTML = "Uploading...";
+
+      var formData = new FormData();
+
+      formData.append("title", _title.value);
+      formData.append("artist", _artist.value);
+      formData.append("fb", _fb.value);
+      formData.append("sc", _sc.value);
+      formData.append("www", _www.value);
+      formData.append("description", _description.value);
+      formData.append("username", _username);
+      formData.append("image", _image.files[0]);
+      formData.append("mp3", _mp3.files[0]);
+      formData.append("genre", _genre.value);
+
+      axios
+        .post("http://localhost/onetrack/src/controllers/upload.php", formData)
+        .then(response => {
+          loader.classList.remove("show");
+          responseText.innerHTML = "Upload completed.";
+          console.log("AJAX sent.");
+          var onUpload = () => this.props.onUpload(response.data.song_id);
+          onUpload();
+        })
+        .catch(function(error) {
+          loader.classList.remove("show");
+          console.log(error);
+        });
+    } else {
+      responseText.innerHTML = "Please fill required fields.";
+    }
+  };
 
   render() {
     return (
@@ -92,7 +137,7 @@ class AddSong extends React.Component {
           type="button"
           id="_submit"
           className="mode-btn"
-          onClick={this.upload.bind(this)}
+          onClick={this.sendForm.bind(this)}
         >
           Submit
         </button>
@@ -105,62 +150,6 @@ class AddSong extends React.Component {
         </button>
       </div>
     );
-  }
-}
-
-function sendForm(username) {
-  var _title = document.getElementById("_title"),
-    _artist = document.getElementById("_artist"),
-    _fb = document.getElementById("_fb"),
-    _sc = document.getElementById("_sc"),
-    _www = document.getElementById("_www"),
-    _image = document.getElementById("_image"),
-    _mp3 = document.getElementById("_mp3"),
-    _description = document.getElementById("_description"),
-    _genre = document.getElementById("selectGenre"),
-    _username = username,
-    loader = document.getElementById("loader"),
-    responseText = document.getElementById("responseText");
-
-  if (
-    validateForm() &&
-    _image.files.length !== 0 &&
-    _mp3.files.length !== 0 &&
-    isJPG(_image.files[0].name) &&
-    isMP3(_mp3.files[0].name)
-  ) {
-    loader.classList.add("show");
-    responseText.innerHTML = "Uploading...";
-
-    var formData = new FormData();
-
-    formData.append("title", _title.value);
-    formData.append("artist", _artist.value);
-    formData.append("fb", _fb.value);
-    formData.append("sc", _sc.value);
-    formData.append("www", _www.value);
-    formData.append("description", _description.value);
-    formData.append("username", _username);
-    formData.append("image", _image.files[0]);
-    formData.append("mp3", _mp3.files[0]);
-    formData.append("genre", _genre.value);
-
-    axios
-      .post("http://localhost/onetrack/src/controllers/upload.php", formData)
-      .then(function(response) {
-        loader.classList.remove("show");
-        responseText.innerHTML = "Upload completed.";
-        console.log("AJAX sent.");
-        this.song_id = response.data.song_id;
-      })
-      .catch(function(error) {
-        loader.classList.remove("show");
-        console.log(error);
-        return false;
-      });
-  } else {
-    responseText.innerHTML = "Please fill required fields.";
-    return false;
   }
 }
 

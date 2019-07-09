@@ -23,11 +23,12 @@ function Menu(props) {
             <i className="fas fa-caret-down fa-lg" />
           </button>
           <div id="dropdown" className="menuDropdown">
-            <button type="button" className="menu-button">
+            <button
+              type="button"
+              className="menu-button"
+              onClick={() => props.setMode("about")}
+            >
               About
-            </button>
-            <button type="button" className="menu-button">
-              Contact
             </button>
             <button
               type="button"
@@ -51,14 +52,19 @@ function Menu(props) {
             <i className="fas fa-caret-down fa-lg" />
           </button>
           <div id="dropdown" className="menuDropdown">
-            <button type="button" className="menu-button">
+            <button
+              type="button"
+              className="menu-button"
+              onClick={() => props.setMode("mySong")}
+            >
               My song
             </button>
-            <button type="button" className="menu-button">
+            <button
+              type="button"
+              className="menu-button"
+              onClick={() => props.setMode("about")}
+            >
               About
-            </button>
-            <button type="button" className="menu-button">
-              Contact
             </button>
             <button
               type="button"
@@ -96,11 +102,12 @@ function Menu(props) {
           <i className="fas fa-caret-down fa-lg" />
         </button>
         <div id="dropdown" className="menuDropdown">
-          <button type="button" className="menu-button">
+          <button
+            type="button"
+            className="menu-button"
+            onClick={() => props.setMode("about")}
+          >
             About
-          </button>
-          <button type="button" className="menu-button">
-            Contact
           </button>
         </div>
       </div>
