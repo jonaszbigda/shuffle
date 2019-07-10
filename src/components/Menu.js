@@ -26,9 +26,9 @@ function Menu(props) {
             <button
               type="button"
               className="menu-button"
-              onClick={
-                (window.location = "https://github.com/jonaszbigda/shuffle")
-              }
+              onClick={() => {
+                window.location = "https://github.com/jonaszbigda/shuffle";
+              }}
             >
               GitHub
             </button>
@@ -71,9 +71,9 @@ function Menu(props) {
             <button
               type="button"
               className="menu-button"
-              onClick={
-                (window.location = "https://github.com/jonaszbigda/shuffle")
-              }
+              onClick={() => {
+                window.location = "https://github.com/jonaszbigda/shuffle";
+              }}
             >
               GitHub
             </button>
@@ -123,9 +123,9 @@ function Menu(props) {
           <button
             type="button"
             className="menu-button"
-            onClick={
-              (window.location = "https://github.com/jonaszbigda/shuffle")
-            }
+            onClick={() => {
+              window.location = "https://github.com/jonaszbigda/shuffle";
+            }}
           >
             GitHub
           </button>
