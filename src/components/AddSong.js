@@ -42,7 +42,7 @@ class AddSong extends React.Component {
       formData.append("genre", _genre.value);
 
       axios
-        .post("http://localhost/onetrack/src/controllers/upload.php", formData)
+        .post("https://www.indietune.net/controllers/upload.php", formData)
         .then(response => {
           loader.classList.remove("show");
           responseText.innerHTML = "Upload completed.";

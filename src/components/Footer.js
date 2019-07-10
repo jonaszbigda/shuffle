@@ -1,7 +1,7 @@
 import React from "react";
 
 function Footer(props) {
-  return <p className="footer">Shuffle by Bankai Software 2019</p>;
+  return <p className="footer">IndieTune by Visitor 2019</p>;
 }
 
 export default Footer;

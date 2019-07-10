@@ -13,7 +13,7 @@ class Top extends React.Component {
 
   fetchTopSongs = () => {
     axios
-      .get("http://localhost/onetrack/src/controllers/top5.php")
+      .get("https://www.indietune.net/controllers/top5.php")
       .then(response => {
         this.setState({
           dataObject: response.data

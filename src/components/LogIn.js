@@ -17,7 +17,7 @@ class Login extends React.Component {
 
       axios({
         method: "post",
-        url: "http://localhost/onetrack/src/controllers/LogIn.php",
+        url: "https://www.indietune.net/controllers/logIn.php",
         data: {
           password: password,
           username: username

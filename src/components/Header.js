@@ -4,20 +4,26 @@ import Menu from "./Menu";
 class Header extends React.Component {
   render() {
     return (
-      <div>
+      <div className="header-container">
         <div className="header">
           <div className="logoSection">
             <button
               className="headerLogoButton"
               type="button"
-              onClick={() => this.props.setMode("shuffle")}
+              onClick={() => {
+                if (this.props.mode === "shuffle") {
+                  this.props.reload();
+                } else {
+                  this.props.setMode("shuffle");
+                }
+              }}
             >
-              Shuffle{" "}
+              IndieTune{" "}
               <span>
-                <i className="fas fa-random" />
+                <i className="far fa-play-circle" />
               </span>
             </button>
-            <p>beta (v0.5.0)</p>
+            <p id="slogan">Empower Indies (beta)</p>
           </div>
           <Menu
             song_id={this.props.song_id}
@@ -28,8 +34,9 @@ class Header extends React.Component {
           />
         </div>
         <h3 id="splash-text">
-          Choose a genre and get randomly picked indie songs. No premium
-          accounts. Equal chance to get discovered.
+          Press the IndieTune logo and get an randomly picked indie song. You
+          can choose a genre if you like.
+          <br /> No premium accounts. Equal chance to get discovered.
         </h3>
       </div>
     );

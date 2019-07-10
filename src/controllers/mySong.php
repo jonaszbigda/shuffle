@@ -4,7 +4,7 @@ include "db.php";
 
 $songid = $_GET["id"];
 
-$stmt = $conn->prepare("SELECT * FROM songs WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM db_songs WHERE id = ?");
 $stmt->execute(array($songid));
 
 $res = $stmt->fetch();

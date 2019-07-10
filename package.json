@@ -1,5 +1,10 @@
 {
-  "name": "Shuffle",
+  "name": "IndieTune",
+  "homepage": "https://www.indietune.net",
+  "author": {
+    "name": "Visitor",
+    "email": "jonasz787@gmail.com"
+  },
   "version": "0.5.0",
   "private": true,
   "dependencies": {

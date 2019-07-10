@@ -5,9 +5,9 @@ include "db.php";
 $genre = $_GET["genre"];
 
 if($genre == "Genre"){
-    $stmt = $conn->query("SELECT * FROM songs ORDER BY RAND() LIMIT 1");
+    $stmt = $conn->query("SELECT * FROM db_songs ORDER BY RAND() LIMIT 1");
 } else {
-    $stmt = $conn->query("SELECT * FROM songs WHERE genre = '$genre' ORDER BY RAND() LIMIT 1");
+    $stmt = $conn->query("SELECT * FROM db_songs WHERE genre = '$genre' ORDER BY RAND() LIMIT 1");
 };
 
 $res = $stmt -> fetch();
@@ -32,7 +32,7 @@ echo json_encode($response);
 
 $newViews = $res['views'] + 1;
 
-$stmt2 = $conn->prepare("UPDATE songs SET views = ? WHERE id = ?");
+$stmt2 = $conn->prepare("UPDATE db_songs SET views = ? WHERE id = ?");
 $stmt2->execute(array($newViews, $res['id']));
 
 $conn = NULL;

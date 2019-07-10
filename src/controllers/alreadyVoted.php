@@ -1,8 +1,4 @@
 <?php
-    header('Access-Control-Allow-Origin: http://localhost');
-
-
-
     $id = $_GET['id'];
 
     if(isset($_COOKIE["userVotes"]))
@@ -19,5 +15,4 @@
     } else {
         echo 0;
     };
-
 ?>

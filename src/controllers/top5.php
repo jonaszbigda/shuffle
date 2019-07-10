@@ -2,7 +2,7 @@
 
 include "db.php";
 
-$stmt = $conn->query("SELECT * FROM songs ORDER BY votes DESC LIMIT 5");
+$stmt = $conn->query("SELECT * FROM db_songs ORDER BY votes DESC LIMIT 5");
 
 $res = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 

@@ -12,7 +12,15 @@ class Player extends React.Component {
     this.intervalId = "";
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
+    this.clearPlayer();
+    if (
+      document.getElementById("player") &&
+      document.getElementById("loader")
+    ) {
+      document.getElementById("player").classList.add("hide");
+      document.getElementById("loader").classList.add("show");
+    }
     if (typeof this.id === "undefined") {
       this.song = new Howl({
         src: [this.props.dataObject.audio_url],
@@ -30,21 +38,24 @@ class Player extends React.Component {
     }
   }
 
+  componentWillUnmount = () => {
+    this.clearPlayer();
+  };
+
   clearPlayer = () => {
     if (typeof this.id !== "undefined") {
       this.pause();
     }
     this.id = undefined;
-    document.getElementById("progress").style.width = "0%";
-    document.getElementById("seekTime").innerText = "0:00";
-    document.getElementById("durationTime").innerText = "0:00";
+    if (
+      document.getElementById("progress") &&
+      document.getElementById("seekTime")
+    ) {
+      document.getElementById("progress").style.width = "0%";
+      document.getElementById("seekTime").innerText = "0:00";
+      document.getElementById("durationTime").innerText = "0:00";
+    }
   };
-
-  componentWillReceiveProps() {
-    this.clearPlayer();
-    document.getElementById("player").classList.add("hide");
-    document.getElementById("loader").classList.add("show");
-  }
 
   startTimer() {
     this.intervalId = setInterval(() => {
@@ -112,15 +123,15 @@ class Player extends React.Component {
             <p id="durationTime">0:00</p>
           </div>
           <button type="button" className="playerControl">
-            <i className="fas fa-redo-alt fa-lg" />
+            <i className="fas fa-redo-alt fa-2x" />
           </button>
           <button
             onClick={this.playPause.bind(this)}
             type="button"
             className="playerControl"
           >
-            <i className="fas fa-play fa-lg" style={this.state.playStyle} />
-            <i className="fas fa-pause fa-lg" style={this.state.pauseStyle} />
+            <i className="fas fa-play fa-2x" style={this.state.playStyle} />
+            <i className="fas fa-pause fa-2x" style={this.state.pauseStyle} />
           </button>
           <button
             id="nextButton"
@@ -128,7 +139,7 @@ class Player extends React.Component {
             className="playerControl"
             onClick={this.props.reload}
           >
-            <i className="fas fa-step-forward fa-lg" />
+            <i className="fas fa-step-forward fa-2x" />
           </button>
         </div>
       </div>

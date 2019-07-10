@@ -6,7 +6,7 @@ function Background(props) {
   if (props.mode === "shuffle" || props.mode === "mySong") {
     url = props.dataObject.img_url;
   } else {
-    url = "http://localhost/img/bg.jpg";
+    url = "https://www.indietune.net/img/bg.jpg";
   }
 
   let bgImage = {

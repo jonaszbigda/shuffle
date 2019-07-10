@@ -23,11 +23,9 @@ class App extends React.Component {
     };
   }
 
-  /* UŻYJEMY TEGO DOPIERO PO DEPLOYMENCIE NA SERWER
-
   checkIfLoggedIn() {
     axios
-      .get("http://localhost/onetrack/src/controllers/sessionInfo.php")
+      .get("https://www.indietune.net/controllers/sessionInfo.php")
       .then(function(response) {
         console.log(response);
       })
@@ -36,10 +34,8 @@ class App extends React.Component {
       });
   }
 
-  */
-
   reload = () => {
-    this.fetchSong();
+    this.fetchSong(this.state.mode);
     this.render();
   };
 
@@ -61,7 +57,6 @@ class App extends React.Component {
       this.setState({
         mode: inMode
       });
-      this.reload();
     }
   };
 
@@ -70,6 +65,8 @@ class App extends React.Component {
       song_id: song_id,
       mode: "mySong"
     });
+    this.fetchSong("mySong");
+    this.render();
   };
 
   logIn = (username, song_id) => {
@@ -92,32 +89,36 @@ class App extends React.Component {
 
   fetchSong(mode) {
     if (mode === "mySong") {
-      console.log("fetching - my song");
+      this.setState({
+        mode: "loading"
+      });
       axios
         .get(
-          "http://localhost/onetrack/src/controllers/mySong.php?id=" +
+          "https://www.indietune.net/controllers/mySong.php?id=" +
             this.state.song_id
         )
         .then(res => {
           const data = res.data;
-          this.setState({ dataObject: data });
+          this.setState({ dataObject: data, mode: "mySong" });
         });
-    } else {
-      console.log("fetching - random song");
+    } else if (mode === "shuffle") {
+      this.setState({
+        mode: "loading"
+      });
       axios
         .get(
-          "http://localhost/onetrack/src/controllers/randomSong.php?genre=" +
+          "https://www.indietune.net/controllers/randomSong.php?genre=" +
             this.state.genre
         )
         .then(res => {
           const data = res.data;
-          this.setState({ dataObject: data });
+          this.setState({ dataObject: data, mode: "shuffle" });
         });
     }
   }
 
   componentWillMount() {
-    this.fetchSong();
+    this.fetchSong(this.state.mode);
   }
 
   render() {
@@ -131,6 +132,7 @@ class App extends React.Component {
             />
             <Header
               song_id={this.state.song_id}
+              mode={this.state.mode}
               logOut={this.logOut}
               logIn={this.logIn}
               username={this.state.username}
@@ -138,22 +140,48 @@ class App extends React.Component {
               loggedIn={this.state.loggedIn}
               reload={this.reload}
             />
-            <Modes
-              setGenre={this.setGenre}
-              genre={this.state.genre}
-              setMode={this.setMode}
-              mode={this.state.mode}
-            />
-            <Content
-              mode={this.state.mode}
-              reload={this.reload}
-              dataObject={this.state.dataObject}
-            />
+            <div className="content-container">
+              <Modes
+                setGenre={this.setGenre}
+                genre={this.state.genre}
+                setMode={this.setMode}
+                mode={this.state.mode}
+              />
+              <div className="loader" />
+              <Content
+                mode={this.state.mode}
+                reload={this.reload}
+                dataObject={this.state.dataObject}
+              />
+            </div>
+
             <Player
               setGenre={this.setGenre}
               reload={this.reload}
               dataObject={this.state.dataObject}
             />
+            <Footer />
+          </div>
+        );
+
+      case "loading":
+        return (
+          <div className="App" style={this.style}>
+            <Background
+              mode={this.state.mode}
+              dataObject={this.state.dataObject}
+            />
+            <Header
+              song_id={this.state.song_id}
+              mode={this.state.mode}
+              logOut={this.logOut}
+              logIn={this.logIn}
+              username={this.state.username}
+              setMode={this.setMode}
+              loggedIn={this.state.loggedIn}
+              reload={this.reload}
+            />
+            <div className="loader show" />
             <Footer />
           </div>
         );
@@ -167,21 +195,26 @@ class App extends React.Component {
               logOut={this.logOut}
               logIn={this.logIn}
               username={this.state.username}
+              mode={this.state.mode}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
               reload={this.reload}
             />
-            <Modes
-              setGenre={this.setGenre}
-              genre={this.state.genre}
-              setMode={this.setMode}
-              mode={this.state.mode}
-            />
-            <Content
-              mode={this.state.mode}
-              reload={this.reload}
-              dataObject={this.state.dataObject}
-            />
+            <div className="content-container">
+              <Modes
+                setGenre={this.setGenre}
+                genre={this.state.genre}
+                setMode={this.setMode}
+                mode={this.state.mode}
+              />
+              <div className="loader" />
+              <Content
+                mode={this.state.mode}
+                reload={this.reload}
+                dataObject={this.state.dataObject}
+              />
+            </div>
+
             <Footer />
           </div>
         );
@@ -197,6 +230,7 @@ class App extends React.Component {
               logIn={this.logIn}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
+              mode={this.state.mode}
               reload={this.reload}
             />
             <Content
@@ -218,6 +252,7 @@ class App extends React.Component {
               logIn={this.logIn}
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
+              mode={this.state.mode}
               reload={this.reload}
             />
             <Content
@@ -267,11 +302,20 @@ class App extends React.Component {
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
             />
-            <Content
-              setMode={this.setMode}
-              mode={this.state.mode}
-              dataObject={this.state.dataObject}
-            />
+            <div className="content-container">
+              <Modes
+                setGenre={this.setGenre}
+                genre={this.state.genre}
+                setMode={this.setMode}
+                mode={this.state.mode}
+              />
+              <div className="loader" />
+              <Content
+                setMode={this.setMode}
+                mode={this.state.mode}
+                dataObject={this.state.dataObject}
+              />
+            </div>
             <Player reload={this.reload} dataObject={this.state.dataObject} />
             <Footer />
           </div>
@@ -289,7 +333,15 @@ class App extends React.Component {
               setMode={this.setMode}
               loggedIn={this.state.loggedIn}
             />
-            <Content mode={this.state.mode} />
+            <div className="content-container">
+              <Modes
+                setGenre={this.setGenre}
+                genre={this.state.genre}
+                setMode={this.setMode}
+                mode={this.state.mode}
+              />
+              <Content mode={this.state.mode} />
+            </div>
             <Footer />
           </div>
         );

@@ -26,6 +26,15 @@ function Menu(props) {
             <button
               type="button"
               className="menu-button"
+              onClick={
+                (window.location = "https://github.com/jonaszbigda/shuffle")
+              }
+            >
+              GitHub
+            </button>
+            <button
+              type="button"
+              className="menu-button"
               onClick={() => props.setMode("about")}
             >
               About
@@ -58,6 +67,15 @@ function Menu(props) {
               onClick={() => props.setMode("mySong")}
             >
               My song
+            </button>
+            <button
+              type="button"
+              className="menu-button"
+              onClick={
+                (window.location = "https://github.com/jonaszbigda/shuffle")
+              }
+            >
+              GitHub
             </button>
             <button
               type="button"
@@ -102,6 +120,15 @@ function Menu(props) {
           <i className="fas fa-caret-down fa-lg" />
         </button>
         <div id="dropdown" className="menuDropdown">
+          <button
+            type="button"
+            className="menu-button"
+            onClick={
+              (window.location = "https://github.com/jonaszbigda/shuffle")
+            }
+          >
+            GitHub
+          </button>
           <button
             type="button"
             className="menu-button"

@@ -11,11 +11,11 @@
         if($votedBefore == true){
             echo "Has been voted on before...";
         } else {
-            $stmt = $conn->query('SELECT `votes` FROM `songs` WHERE `id` = ' . $id . '');
+            $stmt = $conn->query('SELECT `votes` FROM `db_songs` WHERE `id` = ' . $id . '');
             $votes = $stmt -> fetch(PDO::FETCH_ASSOC);
             $votesplusone = $votes['votes'] + 1;
 
-            $stmt = $conn->query('UPDATE `songs` SET `votes`=' . $votesplusone . ' WHERE `id` = ' . $id . '');
+            $stmt = $conn->query('UPDATE `db_songs` SET `votes`=' . $votesplusone . ' WHERE `id` = ' . $id . '');
 
             $cookiesstring = implode("/", $cookies) . "/" . $id;
             setcookie("userVotes", $cookiesstring, time()+30*24*60*60, "/", false);
@@ -24,11 +24,11 @@
             echo $_COOKIE["userVotes"];
         }
     } else {
-        $stmt = $conn->query('SELECT `votes` FROM `songs` WHERE `id` = ' . $id . '');
+        $stmt = $conn->query('SELECT `votes` FROM `db_songs` WHERE `id` = ' . $id . '');
         $votes = $stmt -> fetch(PDO::FETCH_ASSOC);
         $votesplusone = $votes['votes'] + 1;
 
-        $stmt = $conn->query('UPDATE `songs` SET `votes`=' . $votesplusone . ' WHERE `id` = ' . $id . '');
+        $stmt = $conn->query('UPDATE `db_songs` SET `votes`=' . $votesplusone . ' WHERE `id` = ' . $id . '');
 
         setcookie("userVotes", $id, time()+30*24*60*60, "/", false);
 

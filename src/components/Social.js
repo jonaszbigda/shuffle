@@ -65,7 +65,7 @@ function Social(props) {
     return (
       <div className="social">
         <a href={props.sc}>
-          <i className="fab fa-facebook-f fa-2x" />
+          <i className="fab fa-soundcloud fa-2x" />
         </a>
       </div>
     );
@@ -74,7 +74,7 @@ function Social(props) {
     return (
       <div className="social">
         <a href={props.www}>
-          <i className="fab fa-facebook-f fa-2x" />
+          <i className="fas fa-globe-europe fa-2x" />
         </a>
       </div>
     );

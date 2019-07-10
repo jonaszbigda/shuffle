@@ -72,7 +72,7 @@ function register() {
   if (validateUsername() && validatePassword()) {
     axios({
       method: "post",
-      url: "http://localhost/onetrack/src/controllers/registerNewUser.php",
+      url: "https://www.indietune.net/controllers/registerNewUser.php",
       data: {
         password: password,
         username: username

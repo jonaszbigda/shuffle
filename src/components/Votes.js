@@ -20,7 +20,7 @@ class Votes extends React.Component {
     if (this.state.voted === false) {
       axios
         .get(
-          "http://localhost/onetrack/src/controllers/alreadyVoted.php?id=" +
+          "https://www.indietune.net/controllers/alreadyVoted.php?id=" +
             this.props.dataObject.id,
           { withCredentials: true }
         )
@@ -38,7 +38,7 @@ class Votes extends React.Component {
   upVote = () => {
     axios
       .get(
-        "http://localhost/onetrack/src/controllers/upVote.php?id=" +
+        "https://www.indietune.net/controllers/upVote.php?id=" +
           this.props.dataObject.id,
         { withCredentials: true }
       )

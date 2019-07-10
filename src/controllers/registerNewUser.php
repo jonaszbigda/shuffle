@@ -12,7 +12,7 @@ include 'db_users.php';
             $password = $_POST['password'];
             $username = $_POST['username'];
 
-            $stmt = $conn_users->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt = $conn_users->prepare("SELECT * FROM db_users WHERE username = ?");
             $stmt->execute(array($username));
 
             if($stmt->rowCount() == 0){
@@ -23,7 +23,7 @@ include 'db_users.php';
                     'username' => $username,
                     'hash' => $hash
                 ];
-                $sql = "INSERT INTO users (username, hash) VALUES (:username, :hash)";
+                $sql = "INSERT INTO db_users (username, hash) VALUES (:username, :hash)";
                 $stmt = $conn_users->prepare($sql);
                 $stmt->execute($data);
 

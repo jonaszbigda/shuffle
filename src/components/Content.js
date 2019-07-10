@@ -14,7 +14,7 @@ class Content extends React.Component {
     switch (this.props.mode) {
       case "shuffle":
         return (
-          <div className="content">
+          <div id="content" className="content">
             <Cover coverUrl={this.props.dataObject.img_url} />
             <Info dataObject={this.props.dataObject} />
             <Votes mode={this.props.mode} dataObject={this.props.dataObject} />
@@ -24,14 +24,14 @@ class Content extends React.Component {
 
       case "top10":
         return (
-          <div className="content">
+          <div id="content" className="content">
             <Top />
           </div>
         );
 
       case "mySong":
         return (
-          <div className="content">
+          <div id="content" className="content">
             <Cover coverUrl={this.props.dataObject.img_url} />
             <Info dataObject={this.props.dataObject} />
             <Votes mode={this.props.mode} dataObject={this.props.dataObject} />

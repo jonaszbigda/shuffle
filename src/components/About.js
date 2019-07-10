@@ -4,10 +4,11 @@ import "../About.scss";
 function About(props) {
   return (
     <div className="about-container">
-      <h1>About Shuffle</h1>
+      <h1>About IndieTune</h1>
       <hr width="100%" />
       <p>
-        Shuffle is meant to help indie artists and bands get discovered. <br />
+        IndieTune is meant to help indie artists and bands get discovered.{" "}
+        <br />
         Every time you press the shuffle button or reload the page, you get an
         randomly picked song.
         <br />
@@ -23,7 +24,7 @@ function About(props) {
         {" "}
         NOTE: this is a beta version of the app. Please send any bug-reports and
         feedback to: <br />
-        biuro@bankaisoftware.pl <br />
+        jonasz787@gmail.com <br />
         <br />
         Thank you :)
       </p>

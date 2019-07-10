@@ -1,12 +1,9 @@
 <?php
 
-    $host = "127.0.0.1";
-    $user = "root";
-    $pass = "";
-    
+    include "db_credentials.php";
 
     try {
-        $conn = new PDO("mysql:host=$host;dbname=db_songs", $user, $pass);
+        $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e)
